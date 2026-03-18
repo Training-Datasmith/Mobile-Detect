@@ -77,7 +77,6 @@ class Cache implements CacheInterface
      * Deletes the cache item from memory.
      *
      * @param string $key Cache key
-     * @return void
      */
     private function deleteSingle(string $key): void
     {
