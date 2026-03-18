@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace DetectionTests;
 
 use Detection\Cache\Cache;
@@ -24,9 +26,9 @@ final class MobileDetectWithCacheTest extends TestCase
             'HTTP_ACCEPT_LANGUAGE' => 'en-us,en;q=0.5',
         ]);
 
-        $expectedString = "HTTP_REQUEST_METHOD: DELETE" . PHP_EOL .
-        "HTTP_USER_AGENT: Mozilla/5.0 iPhone;" . PHP_EOL .
-        "HTTP_ACCEPT_LANGUAGE: en-us,en;q=0.5";
+        $expectedString = 'HTTP_REQUEST_METHOD: DELETE' . PHP_EOL .
+        'HTTP_USER_AGENT: Mozilla/5.0 iPhone;' . PHP_EOL .
+        'HTTP_ACCEPT_LANGUAGE: en-us,en;q=0.5';
 
         $this->assertEquals($expectedString, $cacheKey);
     }
@@ -42,7 +44,7 @@ final class MobileDetectWithCacheTest extends TestCase
         $isMobile = $detect->isMobile();
 
         $this->assertTrue($isMobile);
-        $this->assertTrue($detect->getCache()->has(sha1("mobile:Some iPhone user agent:")));
+        $this->assertTrue($detect->getCache()->has(sha1('mobile:Some iPhone user agent:')));
     }
 
     /**
@@ -56,13 +58,13 @@ final class MobileDetectWithCacheTest extends TestCase
 
         $isMobile = $detect->isMobile();
         $isTablet = $detect->isTablet();
-        $isMobile2 = $detect->is("mobile");
-        $isTablet2 = $detect->is("tablet");
+        $isMobile2 = $detect->is('mobile');
+        $isTablet2 = $detect->is('tablet');
 
         $isIpad = $detect->isiPad();
-        $isIpad2 = $detect->is("iPad");
+        $isIpad2 = $detect->is('iPad');
         $isiOS = $detect->isiOS();
-        $isiOS2 = $detect->is("iOS");
+        $isiOS2 = $detect->is('iOS');
 
         $this->assertTrue($isMobile);
         $this->assertTrue($isTablet);
@@ -72,7 +74,6 @@ final class MobileDetectWithCacheTest extends TestCase
         $this->assertTrue($isIpad2);
         $this->assertTrue($isiOS);
         $this->assertTrue($isiOS2);
-
 
         $this->assertTrue($detect->getCache()->get(sha1("mobile:$userAgent:")));
         $this->assertTrue($detect->getCache()->get(sha1("tablet:$userAgent:")));

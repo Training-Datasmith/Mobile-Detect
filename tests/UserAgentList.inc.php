@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * @license     MIT License https://github.com/serbanghita/Mobile-Detect/blob/master/LICENSE.txt
  * @link        http://mobiledetect.net
@@ -11,7 +13,7 @@
 
 // Setup.
 $includeBasePath = dirname(__FILE__) . '/providers/vendors';
-$list = array();
+$list = [];
 // Scan.
 $dir = new DirectoryIterator($includeBasePath);
 foreach ($dir as $fileInfo) {

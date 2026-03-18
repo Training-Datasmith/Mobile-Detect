@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace DetectionTests;
 
 use Detection\Exception\MobileDetectException;
@@ -51,7 +53,6 @@ final class UserAgentTest extends TestCase
             }
         }
 
-
         //uses the UserAgentList.inc.php to generate a json file
         if (file_exists($jsonFile) && !is_writable($jsonFile)) {
             throw new \RuntimeException("Need to be able to create/update $jsonFile from UserAgentList.inc.php.");
@@ -61,26 +62,26 @@ final class UserAgentTest extends TestCase
             throw new \RuntimeException("Insufficient permissions to create this file: $jsonFile");
         }
 
-        $json = array();
+        $json = [];
 
         foreach ($list as $vendor => $vendorList) {
             foreach ($vendorList as $userAgent => $props) {
                 if (is_int($userAgent)) {
                     //this means that the user agent is the props
                     $userAgent = $props;
-                    $props = array();
+                    $props = [];
                 }
 
-                $tmp = array(
+                $tmp = [
                     'vendor' => $vendor,
-                    'user_agent' => $userAgent
-                );
+                    'user_agent' => $userAgent,
+                ];
 
                 // Get all dynamic functions to allow test checking.
                 // e.g. "isHuawei"
-//                $tmpDynamicFunctions = array_filter($props, function($value) {
-//                    return !in_array($value, ['isMobile', 'isTablet', 'version', 'model']);
-//                });
+                //                $tmpDynamicFunctions = array_filter($props, function($value) {
+                //                    return !in_array($value, ['isMobile', 'isTablet', 'version', 'model']);
+                //                });
 
                 if (isset($props['isMobile'])) {
                     $tmp['mobile'] = $props['isMobile'];
@@ -108,10 +109,10 @@ final class UserAgentTest extends TestCase
 
         //save the hash
         $hash = sha1(serialize($list));
-        $json = array(
+        $json = [
             'hash' => $hash,
-            'user_agents' => $json
-        );
+            'user_agents' => $json,
+        ];
 
         if (defined('JSON_PRETTY_PRINT')) {
             $jsonString = json_encode($json, JSON_PRETTY_PRINT);
@@ -135,7 +136,7 @@ final class UserAgentTest extends TestCase
 
         //make a list that is usable by functions (THE ORDER OF THE KEYS MATTERS!)
         foreach ($json as $userAgent) {
-            $tmp = array();
+            $tmp = [];
             $tmp[] = $userAgent['user_agent'] ?? null;
             $tmp[] = $userAgent['mobile'] ?? null;
             $tmp[] = $userAgent['tablet'] ?? null;

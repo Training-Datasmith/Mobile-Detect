@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Detection\Exception\MobileDetectException;
 use Detection\MobileDetect;
 
@@ -24,8 +26,6 @@ try {
 }
 var_dump($detect->getMatchesArray());
 ////var_dump($detect->version('IE'));
-
-
 
 /*********************************
  *

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace DetectionTests;
 
 use Detection\Exception\MobileDetectException;
@@ -116,7 +118,7 @@ final class MobileDetectGeneralTest extends TestCase
         $detect = new MobileDetect();
         $this->assertNotEmpty($version = $detect->getVersion());
         $formatCheck = (bool)preg_match('/^[0-9]+\.[0-9]+\.[0-9]+(-[a-zA-Z0-9])?$/', $version);
-        $this->assertTrue($formatCheck, "Fails the semantic version test. The version " . var_export($version, true)
+        $this->assertTrue($formatCheck, 'Fails the semantic version test. The version ' . var_export($version, true)
             . ' does not match X.Y.Z pattern');
     }
 
@@ -142,7 +144,7 @@ final class MobileDetectGeneralTest extends TestCase
                 'HTTP_PRAGMA'           => 'no-cache',
                 'HTTP_CACHE_CONTROL'    => 'no-cache',
                 'REMOTE_ADDR'           => '11.22.33.44',
-                'REQUEST_TIME'          => '01-10-2012 07:57'
+                'REQUEST_TIME'          => '01-10-2012 07:57',
             ]);
 
         $this->assertCount(16, $detect->getHttpHeaders());
@@ -184,21 +186,21 @@ final class MobileDetectGeneralTest extends TestCase
                 'HTTP_PRAGMA'           => 'no-cache',
                 'HTTP_CACHE_CONTROL'    => 'no-cache',
                 'REMOTE_ADDR'           => '11.22.33.44',
-                'REQUEST_TIME'          => '01-10-2012 07:57'
+                'REQUEST_TIME'          => '01-10-2012 07:57',
             ]],
             [[
                 'SERVER_SOFTWARE'       => 'Rogue software',
                 'REQUEST_METHOD'        => 'GET',
                 'REMOTE_ADDR'           => '8.8.8.8',
                 'REQUEST_TIME'          => '07-10-2013 23:56',
-                'HTTP_USER_AGENT'       => "garbage/1.0"
+                'HTTP_USER_AGENT'       => 'garbage/1.0',
             ]],
             [[
                 'SERVER_SOFTWARE'       => 'Apache/1.3.17 (Linux) PHP/5.5.2',
                 'REQUEST_METHOD'        => 'HEAD',
                 'HTTP_USER_AGENT'       => 'Mozilla/5.0 (Linux; U; Android 1.5; en-us; ADR6200 Build/CUPCAKE) AppleWebKit/528.5+ (KHTML, like Gecko) Version/3.1.2 Mobile Safari/525.20.1',
                 'REMOTE_ADDR'           => '1.250.250.0',
-                'REQUEST_TIME'          => '06-12-2006 11:06'
+                'REQUEST_TIME'          => '06-12-2006 11:06',
             ]],
         ];
     }
@@ -248,16 +250,16 @@ final class MobileDetectGeneralTest extends TestCase
     {
         return [
             [[
-                'HTTP_USER_AGENT' => 'blah'
+                'HTTP_USER_AGENT' => 'blah',
             ], 'blah'],
             [[
                 'HTTP_USER_AGENT' => 'iphone',
-                'HTTP_X_OPERAMINI_PHONE_UA' => 'some other stuff'
+                'HTTP_X_OPERAMINI_PHONE_UA' => 'some other stuff',
             ], 'iphone some other stuff'],
             [[
-                'HTTP_X_DEVICE_USER_AGENT' => 'hello world'
+                'HTTP_X_DEVICE_USER_AGENT' => 'hello world',
             ], 'hello world'],
-            [[], '']
+            [[], ''],
         ];
     }
 
@@ -284,7 +286,7 @@ final class MobileDetectGeneralTest extends TestCase
         $detect->setHttpHeaders($header1);
         $this->assertSame($detect->getHttpHeaders(), $header1);
 
-        $header2 = array('HTTP_FIRE_BREATHING_DRAGON' => 'yeah!');
+        $header2 = ['HTTP_FIRE_BREATHING_DRAGON' => 'yeah!'];
         $detect->setHttpHeaders($header2);
         $this->assertSame($detect->getHttpHeaders(), $header2);
     }
@@ -299,7 +301,7 @@ final class MobileDetectGeneralTest extends TestCase
         $header1 = [
             'HTTP_CLOUDFRONT_IS_DESKTOP_VIEWER' => 'false',
             'HTTP_CLOUDFRONT_IS_MOBILE_VIEWER'  => 'true',
-            'HTTP_CLOUDFRONT_IS_TABLET_VIEWER'  => 'false'
+            'HTTP_CLOUDFRONT_IS_TABLET_VIEWER'  => 'false',
         ];
         $detect = new MobileDetect();
         $detect->setHttpHeaders($header1);
@@ -311,7 +313,7 @@ final class MobileDetectGeneralTest extends TestCase
         $header2 = [
             'HTTP_CLOUDFRONT_IS_DESKTOP_VIEWER' => 'true',
             'HTTP_CLOUDFRONT_IS_MOBILE_VIEWER'  => 'false',
-            'HTTP_CLOUDFRONT_IS_TABLET_VIEWER'  => 'false'
+            'HTTP_CLOUDFRONT_IS_TABLET_VIEWER'  => 'false',
         ];
         $detect->setHttpHeaders($header2);
         $this->assertSame($detect->getUserAgent(), 'Amazon CloudFront');
@@ -322,7 +324,7 @@ final class MobileDetectGeneralTest extends TestCase
         $header3 = [
             'HTTP_CLOUDFRONT_IS_DESKTOP_VIEWER' => 'false',
             'HTTP_CLOUDFRONT_IS_MOBILE_VIEWER'  => 'false',
-            'HTTP_CLOUDFRONT_IS_TABLET_VIEWER'  => 'true'
+            'HTTP_CLOUDFRONT_IS_TABLET_VIEWER'  => 'true',
         ];
         $detect->setHttpHeaders($header3);
         $this->assertSame($detect->getUserAgent(), 'Amazon CloudFront');
@@ -340,7 +342,7 @@ final class MobileDetectGeneralTest extends TestCase
     public function testSetLongUserAgent()
     {
         $detect = new MobileDetect();
-        $detect->setUserAgent(str_repeat("a", 501));
+        $detect->setUserAgent(str_repeat('a', 501));
         $this->assertEquals(500, strlen($detect->getUserAgent()));
     }
 
@@ -350,10 +352,10 @@ final class MobileDetectGeneralTest extends TestCase
     {
         return [
             [[
-                'HTTP_ACCEPT' => 'application/json; q=0.2, application/x-obml2d; q=0.8, image/gif; q=0.99, */*'
+                'HTTP_ACCEPT' => 'application/json; q=0.2, application/x-obml2d; q=0.8, image/gif; q=0.99, */*',
             ]],
             [[
-                'HTTP_ACCEPT' => 'text/*; q=0.1, application/vnd.rim.html'
+                'HTTP_ACCEPT' => 'text/*; q=0.1, application/vnd.rim.html',
             ]],
             [[
                 'HTTP_ACCEPT' => 'text/vnd.wap.wml',
@@ -365,43 +367,43 @@ final class MobileDetectGeneralTest extends TestCase
                 'HTTP_X_WAP_PROFILE' => 'hello',
             ]],
             [[
-                'HTTP_X_WAP_CLIENTID' => ''
+                'HTTP_X_WAP_CLIENTID' => '',
             ]],
             [[
-                'HTTP_WAP_CONNECTION' => ''
+                'HTTP_WAP_CONNECTION' => '',
             ]],
             [[
-                'HTTP_PROFILE' => ''
+                'HTTP_PROFILE' => '',
             ]],
             [[
-                'HTTP_X_OPERAMINI_PHONE_UA' => ''
+                'HTTP_X_OPERAMINI_PHONE_UA' => '',
             ]],
             [[
-                'HTTP_X_NOKIA_GATEWAY_ID' => ''
+                'HTTP_X_NOKIA_GATEWAY_ID' => '',
             ]],
             [[
-                'HTTP_X_ORANGE_ID' => ''
+                'HTTP_X_ORANGE_ID' => '',
             ]],
             [[
-                'HTTP_X_VODAFONE_3GPDPCONTEXT' => ''
+                'HTTP_X_VODAFONE_3GPDPCONTEXT' => '',
             ]],
             [[
-                'HTTP_X_HUAWEI_USERID' => ''
+                'HTTP_X_HUAWEI_USERID' => '',
             ]],
             [[
-                'HTTP_UA_OS' => ''
+                'HTTP_UA_OS' => '',
             ]],
             [[
-                'HTTP_X_MOBILE_GATEWAY' => ''
+                'HTTP_X_MOBILE_GATEWAY' => '',
             ]],
             [[
-                'HTTP_X_ATT_DEVICEID' => ''
+                'HTTP_X_ATT_DEVICEID' => '',
             ]],
             [[
-                'HTTP_UA_CPU' => 'ARM'
+                'HTTP_UA_CPU' => 'ARM',
             ]],
             [[
-                'Sec-CH-UA-Mobile' => '?1'
+                'Sec-CH-UA-Mobile' => '?1',
             ]],
         ];
     }
@@ -423,23 +425,23 @@ final class MobileDetectGeneralTest extends TestCase
 
         return [
             [[
-                'HTTP_UA_CPU' => 'AMD64'
+                'HTTP_UA_CPU' => 'AMD64',
             ]],
             [[
-                'HTTP_UA_CPU' => 'X86'
+                'HTTP_UA_CPU' => 'X86',
             ]],
             [[
-                'HTTP_ACCEPT' => 'text/javascript, application/javascript, application/ecmascript, application/x-ecmascript, */*; q=0.01'
+                'HTTP_ACCEPT' => 'text/javascript, application/javascript, application/ecmascript, application/x-ecmascript, */*; q=0.01',
             ]],
             [[
-                'HTTP_REQUEST_METHOD' => 'DELETE'
+                'HTTP_REQUEST_METHOD' => 'DELETE',
             ]],
             [[
-                'HTTP_VIA' => '1.1 ws-proxy.stuff.co.il C0A800FA'
+                'HTTP_VIA' => '1.1 ws-proxy.stuff.co.il C0A800FA',
             ]],
             // Note: the device could be a mobile but doesn't want a "mobile" experience.
             [[
-                'Sec-CH-UA-Mobile' => '?0'
+                'Sec-CH-UA-Mobile' => '?0',
             ]],
         ];
     }
@@ -462,7 +464,7 @@ final class MobileDetectGeneralTest extends TestCase
             count(MobileDetect::getPhoneDevices()),
             count(MobileDetect::getTabletDevices()),
             count(MobileDetect::getOperatingSystems()),
-            count(MobileDetect::getBrowsers())
+            count(MobileDetect::getBrowsers()),
         ]);
         $rules = $md->getRules();
         $this->assertCount($count, $rules);

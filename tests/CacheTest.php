@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace DetectionTests;
 
 use DateInterval;
@@ -210,7 +212,7 @@ final class CacheTest extends TestCase
         $this->cache->setMultiple(['isA' => true, 'isB' => false], 200);
         $this->assertEquals([
             'isA' => true,
-            'isB' => false
+            'isB' => false,
         ], $this->cache->getMultiple(['isA', 'isB']));
     }
 
@@ -226,7 +228,7 @@ final class CacheTest extends TestCase
         $this->assertEquals([
             'isA' => null,
             'isB' => null,
-            'isC' => true
+            'isC' => true,
         ], $this->cache->getMultiple(['isA', 'isB', 'isC']));
     }
 

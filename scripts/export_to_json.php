@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Mobile Detect Library
  * - export -
@@ -47,8 +48,8 @@ $json = [
         // If match is found, triggers 'isMobile' to be true.
         'browsers' => $detect->getBrowsers(),
         // If match is found, triggers 'isMobile' to be true.
-        'os'       => $detect->getOperatingSystems()
-    ]
+        'os'       => $detect->getOperatingSystems(),
+    ],
 ];
 $fileName = dirname(__FILE__) . '/../MobileDetect.json';
 // Write the JSON file to disk.
@@ -56,7 +57,7 @@ $fileName = dirname(__FILE__) . '/../MobileDetect.json';
 if (
     file_put_contents($fileName, json_encode($json, JSON_PRETTY_PRINT))
 ) {
-    echo "Done exporting version ". $detect->getVersion() ." to JSON.\nCheck the output at: " . realpath($fileName);
+    echo 'Done exporting version '. $detect->getVersion() ." to JSON.\nCheck the output at: " . realpath($fileName);
 } else {
-    echo "Failed to write to disk: " . realpath($fileName) ;
+    echo 'Failed to write to disk: ' . realpath($fileName) ;
 }

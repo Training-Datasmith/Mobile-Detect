@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     'Apple' => [
         'iTunes/9.1.1'                                                                                                                                                                           => ['isMobile' => false, 'isTablet' => false],

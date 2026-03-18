@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace DetectionTests\Benchmark;
 
 use Detection\Exception\MobileDetectException;

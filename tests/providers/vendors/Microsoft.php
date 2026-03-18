@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     'Microsoft' => [
         // @See https://github.com/serbanghita/Mobile-Detect/issues/564

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace DetectionTests;
 
 use Detection\Exception\MobileDetectException;
@@ -37,7 +39,7 @@ final class MobileDetectStandaloneTest extends TestCase
         $this->expectException(MobileDetectException::class);
 
         $detect = new MobileDetectStandalone(null, [
-            'cacheKeyFn' => fn ($key) => str_repeat('a', 300)
+            'cacheKeyFn' => fn ($key) => str_repeat('a', 300),
         ]);
         $detect->setUserAgent('iPhone');
 

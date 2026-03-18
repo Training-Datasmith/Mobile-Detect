@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     'Amazon' => [
         'Mozilla/5.0 (Linux; U; Android 4.0.3; en-us; KFTT Build/IML74K) AppleWebKit/535.19 (KHTML, like Gecko) Silk/3.4 Mobile Safari/535.19 Silk-Accelerated =true' => ['isMobile' => true, 'isTablet' => true],
@@ -13,7 +15,6 @@ return [
         // T720-WIFI is a tablet.
         'Mozilla/5.0 (Linux; U; Android 2.1; xx-xx; T720-WIFI Build/ECLAIR) AppleWebKit/530.17 (KHTML, like Gecko) Version/4.0 Mobile Safari/530.17' => ['isMobile' => true, 'isTablet' => true],
         'Mozilla/5.0 (Linux; Android 5.1; KFARWI Build/LMY47O) AppleWebKit/537.36 (KHTML, like Gecko) Silk/47.1.79 like Chrome/47.0.2526.80 Mobile Safari/537.36' => ['isMobile' => true, 'isTablet' => true],
-
 
         // Tablet.
         'Mozilla/5.0 (Linux; Android 4.4.3; KFTHWI Build/KTU84M) AppleWebKit/537.36 (KHTML, like Gecko) Silk/44.1.54 like Chrome/44.0.2403.63 Safari/537.36' => ['isMobile' => true, 'isTablet' => true],

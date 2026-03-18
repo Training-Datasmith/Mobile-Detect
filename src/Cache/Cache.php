@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace Detection\Cache;
 
-use Psr\SimpleCache\CacheInterface;
 use DateInterval;
 use DateTime;
 
 use function is_int;
+
+use Psr\SimpleCache\CacheInterface;
+
 use function time;
 
 /**

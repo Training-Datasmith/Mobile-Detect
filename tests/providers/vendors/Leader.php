@@ -1,7 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     [
-        'Mozilla/5.0 (Linux; U; Android 4.2.2; en-au; TBLT10Q-32GB Build/JDQ39) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Safari/534.30' => ['isMobile' => true, 'isTablet' => true]
-    ]
+        'Mozilla/5.0 (Linux; U; Android 4.2.2; en-au; TBLT10Q-32GB Build/JDQ39) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Safari/534.30' => ['isMobile' => true, 'isTablet' => true],
+    ],
 ];

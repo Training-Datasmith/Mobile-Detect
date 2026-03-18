@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     'Nexus' => [
         // Tablets
@@ -19,6 +21,6 @@ return [
         'Mozilla/5.0 (Linux; U; Android 5.1 en-us; Nexus One Build/FRF91) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1 baidubrowser/4.5.0.0 (Baidu; P1 5.1)'  => ['isMobile' => true, 'isTablet' => false],
         'Mozilla/5.0 (Linux; Android 6.0.1; Nexus 6 Build/MMB29K; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/76.0.3809.89 Mobile Safari/537.36 T7/11.21 SP-engine/2.17.0 baiduboxapp/11.21.0.10 (Baidu; P1 6.0.1)'  => ['isMobile' => true, 'isTablet' => false],
         'Mozilla/5.0 (Linux; U; Android 4.4; en-us; Nexus 4 Build/JOP24G) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30'  => ['isMobile' => true, 'isTablet' => false],
-    ]
+    ],
 
 ];

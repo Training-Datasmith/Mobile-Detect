@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /**
  * Example using composer's autoloader.
  */
@@ -29,6 +31,3 @@ try {
 }
 
 var_dump($isTablet);
-
-
-
